@@ -29,11 +29,11 @@ public class Edit extends AppCompatActivity {
     private final String CARPETA_RAIZ = "misImagenesPrueba/";
     private final String RUTA_IMAGEN = CARPETA_RAIZ + "PasesIMSS";
     Button upd_el, del_btn;
-    EditText  address,phone,email,lastname;
+    EditText address, phone, email, lastname;
     RadioButton entrada, salida, intermedio;
-    TextView  name;
+    TextView name;
     ImageView imagen;
-    String path,radiobtn;
+    String path, radiobtn;
     long id;
 
     @Override
@@ -52,7 +52,10 @@ public class Edit extends AppCompatActivity {
 
         Intent i = getIntent();
         id = i.getLongExtra("id", 0);
-        name.setText(i.getStringExtra("name"));
+        String Fecha = i.getStringExtra("name");
+        name.setText(Fecha);
+        //name.setText(Fecha.charAt(0) + "" + Fecha.charAt(1) + "" + Fecha.charAt(2) + "" + Fecha.charAt(3) + "/" +
+            //    Fecha.charAt(4) + "" + Fecha.charAt(5) + "/" + Fecha.charAt(6));
 
         switch (i.getStringExtra("lastname")) {
             case "ENTRADA":
@@ -104,7 +107,7 @@ public class Edit extends AppCompatActivity {
                     address.setText("");
                     phone.setText("");
                     Toast.makeText(getBaseContext(), "Elemento Actualizado!!", Toast.LENGTH_LONG).show();
-                    Intent intentds = new Intent(Edit.this,MainActivity.class);
+                    Intent intentds = new Intent(Edit.this, MainActivity.class);
                     startActivity(intentds);
                     finish();
 

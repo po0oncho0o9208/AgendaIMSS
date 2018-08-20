@@ -33,12 +33,13 @@
                 android:layout_gravity="center"
                 android:layout_centerHorizontal="true"
                 android:text="Menú Principal"
-                android:textColor="@color/colorSilver"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="35sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp" />
 
             <Button
+                android:layout_marginTop="20dp"
                 android:id="@+id/pases"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
