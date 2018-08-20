@@ -8,7 +8,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    android:background="#094339"
+    android:background="#33534e"
     >
     <ScrollView
         android:layout_width="match_parent"
