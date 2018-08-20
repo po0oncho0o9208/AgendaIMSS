@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AgendaIMSS.iml" filepath="$PROJECT_DIR$/AgendaIMSS.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/AgendaIMSS-app.iml" filepath="$PROJECT_DIR$/app/AgendaIMSS-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Agenda_IMSS-AgendaIMSS.iml" filepath="$PROJECT_DIR$/Agenda_IMSS-AgendaIMSS.iml" />
+      <module fileurl="file://C:\Users\User\Downloads\AgendaIMSS\app\AgendaIMSS-app.iml" filepath="C:\Users\User\Downloads\AgendaIMSS\app\AgendaIMSS-app.iml" />
+      <module fileurl="file://C:\Users\User\Downloads\AgendaIMSS\Agenda_IMSS-AgendaIMSS.iml" filepath="C:\Users\User\Downloads\AgendaIMSS\Agenda_IMSS-AgendaIMSS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
