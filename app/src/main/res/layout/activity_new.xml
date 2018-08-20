@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="16dp"
     android:paddingLeft="16dp"
+    android:background="#01493d"
     android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    >
+    android:paddingTop="16dp">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="0dp">
+
         <LinearLayout
 
             android:layout_width="match_parent"
@@ -28,164 +28,171 @@
             tools:layout_editor_absoluteY="32dp">
 
 
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="PASE"
+                android:textColor="#ffffff"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="PASE"
-        android:id="@+id/textView3"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="MES"
-        android:id="@+id/textView5" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/name" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="DIA"
-        android:id="@+id/textView6" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lastname" />
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <LinearLayout
-                android:id="@+id/linContacto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dip"
-                android:paddingBottom="5dip"
-                android:orientation="horizontal"
-                android:gravity="bottom">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/imgContactoAPrestar"
+                <Button
+                    android:id="@+id/fechabtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Fecha" />
 
                 <TextView
-                    android:id="@+id/txtContacto"
-                    android:text="CONTACTO"
+                    android:id="@+id/textfecha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="  /  /  "
+                    android:textColor="#ffffff"
 
-                <ImageButton
-                    android:id="@+id/btnBuscar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:onClick="buscarContacto"
-                    app:srcCompat="@android:drawable/btn_star"/>
-
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HORAS"
+                android:textColor="#ffffff"
 
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:id="@+id/horas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="#ffffff"
+                android:backgroundTint="#ffffff"
+                android:windowSoftInputMode="adjustPan" />
 
             <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:text="MOTIVO"
-    android:id="@+id/textView8" />
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MOTIVO"
+                android:textColor="#ffffff"
+
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:backgroundTint="#ffffff"
+                android:windowSoftInputMode="adjustPan"
+
+                />
+
+            <TextView
+                android:id="@+id/pase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SU PASE ES DE:"
+                android:textColor="#ffffff"
+
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/email" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/entrada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:buttonTint="#ffffff"
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="LA SUSTITUCION ES:"
-        android:id="@+id/phone" />
+                        android:text="ENTRADA " />
+
+                    <RadioButton
+                        android:id="@+id/salida"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="#ffffff"
+                        android:buttonTint="#ffffff"
 
 
+                        android:text="SALIDA " />
 
-   <RelativeLayout
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       >
-       <RadioGroup
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           >
+                    <RadioButton
+                        android:id="@+id/intermedio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="#ffffff"
+                        android:buttonTint="#ffffff"
+                        android:text="INTERMEDIO " />
+                </RadioGroup>
 
-           <RadioButton
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="PAGADO "
-               android:id="@+id/entrada"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true">
 
-           <RadioButton
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_gravity="center"
-               android:text="NO PAGADO "
-               android:id="@+id/salida"/>
+                    <ImageView
+                        android:id="@+id/imagemId"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="29dp"
+                        android:layout_marginStart="29dp"
+                        android:src="@drawable/ic_launcher_background" />
 
-       </RadioGroup>
+                    <Button
+                        android:id="@+id/btnCargarImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@id/imagemId"
+                        android:background="@color/colorAccent"
+                        android:onClick="onclick"
+                        android:text="agregar imagen"
+                        android:textColor="#ffff" />
 
-       <RelativeLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_alignParentLeft="true"
-           android:layout_alignParentStart="true"
-           android:layout_alignParentTop="true">
+                </RelativeLayout>
 
-           <ImageView
-               android:id="@+id/imagemId"
-               android:layout_width="match_parent"
-               android:layout_height="250dp"
-               android:layout_alignParentBottom="true"
-               android:layout_alignParentLeft="true"
-               android:layout_alignParentStart="true"
-               android:layout_marginLeft="29dp"
-               android:layout_marginStart="29dp"
-               android:src="@drawable/ic_launcher_background" />
+            </RelativeLayout>
 
-           <Button
-               android:id="@+id/btnCargarImg"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_alignParentBottom="true"
-               android:layout_alignParentLeft="true"
-               android:layout_alignParentStart="true"
-               android:layout_below="@id/imagemId"
-               android:background="@color/colorAccent"
-               android:onClick="onclick"
-               android:text="Selecciona Imagen"
-               android:textColor="#ffff" />
-
-       </RelativeLayout>
-
-   </RelativeLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Agregar"
-        android:id="@+id/add_element" />
+            <Button
+                android:id="@+id/add_element"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agregar" />
         </LinearLayout>
     </ScrollView>
 
