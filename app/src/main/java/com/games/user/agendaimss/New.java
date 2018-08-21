@@ -48,8 +48,8 @@ public class New extends Activity implements View.OnClickListener {
     TextView textfecha;
     ImageView imagen;
     boolean foto = false;
-    String path, fecha, radiobtn;
-    private int dia, mes, ano;
+    String path, fecha, radiobtn, mes, dia;
+    private int diaint, mesint, ano;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +69,8 @@ public class New extends Activity implements View.OnClickListener {
         botonCargar.setOnClickListener(this);
         fechabtn = findViewById(R.id.fechabtn);
         fechabtn.setOnClickListener(this);
-        dia = c.get(Calendar.DAY_OF_MONTH);
-        mes = c.get(Calendar.MONTH) + 1;
+        diaint = c.get(Calendar.DAY_OF_MONTH);
+        mesint = c.get(Calendar.MONTH) + 1;
         ano = c.get(Calendar.YEAR);
 
         if (validaPermisos()) {
@@ -227,11 +227,21 @@ public class New extends Activity implements View.OnClickListener {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(this, new OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        fecha = "" + year + month + dayOfMonth ;
-                        textfecha.setText(+dayOfMonth + "/" + month + "/" + year);
+                        mes = "" + (month + 1);
+                        Toast.makeText(New.this, "" + mes.length(), Toast.LENGTH_LONG).show();
+                        if (mes.length() == 1) {
+                            mes = 0 + mes;
+                        }
+                        dia = "" + dayOfMonth;
+                        if (dia.length() == 1)
+                            dia = 0 + dia;
+
+                        fecha = dia + mes + year;
+
+                        textfecha.setText(dia + "/" + mes + "/" + year);
                         //Toast.makeText(getBaseContext(), "fecha!!" + dayOfMonth + " / " + (month + 1) + " / " + year, Toast.LENGTH_LONG).show();
                     }
-                }, ano, mes, dia);
+                }, ano, mesint, diaint);
                 datePickerDialog.show();
                 break;
 

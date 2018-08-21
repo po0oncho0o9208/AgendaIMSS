@@ -53,9 +53,9 @@ public class Edit extends AppCompatActivity {
         Intent i = getIntent();
         id = i.getLongExtra("id", 0);
         String Fecha = i.getStringExtra("name");
-        name.setText(Fecha);
-        //name.setText(Fecha.charAt(0) + "" + Fecha.charAt(1) + "" + Fecha.charAt(2) + "" + Fecha.charAt(3) + "/" +
-            //    Fecha.charAt(4) + "" + Fecha.charAt(5) + "/" + Fecha.charAt(6));
+        //name.setText(Fecha);
+        name.setText(Fecha.charAt(0) + "" + Fecha.charAt(1) + "/" + "" + Fecha.charAt(2) + "" + Fecha.charAt(3) + "/" +
+                Fecha.charAt(4) + "" + Fecha.charAt(5) + Fecha.charAt(6) + Fecha.charAt(7));
 
         switch (i.getStringExtra("lastname")) {
             case "ENTRADA":
@@ -72,8 +72,8 @@ public class Edit extends AppCompatActivity {
         phone.setText(i.getStringExtra("phone"));
 
         String paths = Environment.getExternalStorageDirectory() +
-                File.separator + RUTA_IMAGEN + File.separator + 0 + name.getText().toString() + ".jpg";
-        // Toast.makeText(this, paths, Toast.LENGTH_LONG).show();
+                File.separator + RUTA_IMAGEN + File.separator + 0 + Fecha + ".jpg";
+        Toast.makeText(this, paths, Toast.LENGTH_LONG).show();
         try {
 
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(paths));

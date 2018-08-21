@@ -28,8 +28,12 @@
         </activity>
         <activity android:name=".MenuPrincipal" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Edit" />
-        <activity android:name=".New" />
+        <activity
+            android:name=".Edit"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".New"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Foto"></activity>
 
         <provider
@@ -39,7 +43,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 
