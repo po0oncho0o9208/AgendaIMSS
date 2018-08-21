@@ -1,7 +1,7 @@
 package com.games.user.agendaimss;
+
 import android.app.ListActivity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,9 +11,9 @@ import android.widget.ListView;
 
 import java.util.List;
 
-public class  MainActivity extends ListActivity {
+public class MainActivity extends ListActivity {
 
-    Button all,n;
+    Button all, n;
     Contact data;
 
 
@@ -22,7 +22,7 @@ public class  MainActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        n = (Button)findViewById(R.id.new_element);
+        n = (Button) findViewById(R.id.new_element);
         data = new Contact(this);
         data.open();
 
@@ -35,23 +35,24 @@ public class  MainActivity extends ListActivity {
         });
 
         final List<Contact> values = data.getAll();
-        ArrayAdapter<Contact> adapter = new ArrayAdapter<Contact>(this, android.R.layout.simple_expandable_list_item_1,values);
+        ArrayAdapter<Contact> adapter = new ArrayAdapter<Contact>(this, android.R.layout.simple_expandable_list_item_1, values);
         setListAdapter(adapter);
 
         ListView listView = getListView();
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent i = new Intent(MainActivity.this,Edit.class);
-                i.putExtra("id",values.get(position).id);
-                i.putExtra("name",values.get(position).name);
-                i.putExtra("lastname",values.get(position).lastname);
-                i.putExtra("address",values.get(position).address);
-                i.putExtra("email",values.get(position).email);
-                i.putExtra("phone",values.get(position).phone);
 
+                Intent i = new Intent(MainActivity.this, Edit.class);
+                i.putExtra("id", values.get(position).id);
+                i.putExtra("name", values.get(position).name);
+                i.putExtra("lastname", values.get(position).lastname);
+                i.putExtra("address", values.get(position).address);
+                i.putExtra("email", values.get(position).email);
+                i.putExtra("phone", values.get(position).phone);
                 startActivity(i);
 
             }
@@ -59,13 +60,13 @@ public class  MainActivity extends ListActivity {
         });
 
     }
+
     @Override
-    public void onResume()
-    {  // After a pause OR at startup
+    public void onResume() {  // After a pause OR at startup
         super.onResume();
         //Refresh your stuff here
-        final List<Contact>  values = data.getAll();
-        ArrayAdapter<Contact> adapter = new ArrayAdapter<Contact>(this, android.R.layout.simple_expandable_list_item_1,values);
+        final List<Contact> values = data.getAll();
+        ArrayAdapter<Contact> adapter = new ArrayAdapter<Contact>(this, android.R.layout.simple_expandable_list_item_1, values);
         setListAdapter(adapter);
     }
 }
