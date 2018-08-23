@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -58,7 +60,7 @@ public class New extends Activity implements View.OnClickListener {
         add_el = (Button) findViewById(R.id.add_element);
         add_el.setOnClickListener(this);
         horas = (EditText) findViewById(R.id.horas);
-        motivo = (EditText) findViewById(R.id.email);
+        motivo = (EditText) findViewById(R.id.motivo);
         textfecha = (TextView) findViewById(R.id.textfecha);
         entrada = (RadioButton) findViewById(R.id.entrada);
         entrada.setChecked(true);
@@ -209,7 +211,8 @@ public class New extends Activity implements View.OnClickListener {
                             });
 
                     Bitmap bitmap = BitmapFactory.decodeFile(path);
-                    imagen.setImageBitmap(bitmap);
+                    Drawable d = new BitmapDrawable(getResources(), bitmap);
+                    imagen.setBackgroundDrawable(d);
 
                     break;
             }
@@ -228,7 +231,7 @@ public class New extends Activity implements View.OnClickListener {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         mes = "" + (month + 1);
-                        Toast.makeText(New.this, "" + mes.length(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(New.this, "" + mes.length(), Toast.LENGTH_LONG).show();
                         if (mes.length() == 1) {
                             mes = 0 + mes;
                         }
@@ -259,7 +262,7 @@ public class New extends Activity implements View.OnClickListener {
                         }
                         Contact c = new Contact(getBaseContext());
                         c.open();
-                        c.createContact(fecha, radiobtn, horas.getText().toString(), motivo.getText().toString(), "phone");
+                        c.createContact(fecha, radiobtn, horas.getText().toString(), motivo.getText().toString());
                         horas.setText("");
                         motivo.setText("");
                         Toast.makeText(getBaseContext(), "Elemento Agregado!!", Toast.LENGTH_LONG).show();

@@ -34,6 +34,7 @@ public class MenuPrincipal extends AppCompatActivity {
                         case R.id.pases:
                             Intent intent1 = new Intent(MenuPrincipal.this,MainActivity.class);
                             startActivity(intent1);
+                            finish();
                             break;
                         case R.id.sustis:
                             Intent intentae = new Intent(MenuPrincipal.this,Foto.class);
