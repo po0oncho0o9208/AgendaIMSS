@@ -59,7 +59,7 @@ public class MainActivity extends ListActivity {
 
             Bitmap bitmap = BitmapFactory.decodeFile(paths);
             Drawable d = new BitmapDrawable(getResources(), bitmap);
-            category.add(new Category("olo" + values.get(i).id, "Servicio 1", values.get(i).fecha + "-" + values.get(i).motivo, d));
+            category.add(new Category("olo" + values.get(i).id, "Servicio 1", values.get(i).fecha + "-" + '\n' + values.get(i).motivo, d));
         }
         ListView listView = findViewById(android.R.id.list);
         AdapterCategory adapter = new AdapterCategory(this, category);
