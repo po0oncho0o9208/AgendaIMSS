@@ -190,8 +190,11 @@
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center"
                 android:id="@+id/add_element"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#ffff"
+                android:background="@color/colorAccent"
+
                 android:text="Agregar" />
         </LinearLayout>
     </ScrollView>
