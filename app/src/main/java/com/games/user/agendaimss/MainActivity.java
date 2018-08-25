@@ -64,7 +64,7 @@ public class MainActivity extends ListActivity {
         for (int i = 0; i < values.size(); i++) {
 
             String paths = Environment.getExternalStorageDirectory() +
-                    File.separator + RUTA_IMAGEN + File.separator + 0 + values.get(i).fecha + values.get(i).motivo + ".jpg";
+                    File.separator + RUTA_IMAGEN + File.separator + 0 + values.get(i).fecha + values.get(i).radibuttonnid + ".jpg";
 
             Bitmap bitmap = BitmapFactory.decodeFile(paths);
             category.add(new Category("olo" + values.get(i).id, "Servicio 1", values.get(i).fecha + "-" + values.get(i).motivo, bitmap));

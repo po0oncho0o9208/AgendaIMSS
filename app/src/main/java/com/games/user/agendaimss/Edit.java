@@ -78,7 +78,7 @@ public class Edit extends AppCompatActivity {
 
 
         String paths = Environment.getExternalStorageDirectory() +
-                File.separator + RUTA_IMAGEN + File.separator + 0 + Fecha + i.getStringExtra("email") + ".jpg";
+                File.separator + RUTA_IMAGEN + File.separator + 0 + Fecha + i.getStringExtra("lastname") + ".jpg";
 
         Bitmap bitmap = BitmapFactory.decodeFile(paths);
         imagen.setImageBitmap(bitmap);

@@ -159,7 +159,6 @@ public class New extends Activity implements View.OnClickListener {
 
 
     private void tomarFotografia() {
-        Toast.makeText(this, horas.getText(), Toast.LENGTH_LONG).show();
         File fileImagen = new File(Environment.getExternalStorageDirectory(), RUTA_IMAGEN);
         boolean isCreada = fileImagen.exists();
         String nombreImagen = "";
@@ -167,7 +166,16 @@ public class New extends Activity implements View.OnClickListener {
             isCreada = fileImagen.mkdirs();
         }
         if (isCreada == true) {
-            nombreImagen = 0 + fecha + horas.getText() + ".jpg";
+            if (entrada.isChecked()) {
+                radiobtn = "ENTRADA";
+            }
+            if (salida.isChecked()) {
+                radiobtn = "SALIDA";
+            }
+            if (intermedio.isChecked()) {
+                radiobtn = "INTERMEDIO";
+            }
+            nombreImagen = 0 + fecha + radiobtn + ".jpg";
         }
 
         path = Environment.getExternalStorageDirectory() +
