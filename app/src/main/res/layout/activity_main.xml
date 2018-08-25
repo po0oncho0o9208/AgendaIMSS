@@ -13,11 +13,11 @@
     <Button
 
         android:id="@+id/new_element"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@android:drawable/button_onoff_indicator_off"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/buttonadd"
 
         />
 
@@ -26,6 +26,7 @@
         android:id="@id/android:list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:listSelector="#219711"
         android:theme="@style/listViewStyle" />
 
