@@ -23,6 +23,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -55,8 +56,14 @@ public class New extends AppCompatActivity implements View.OnClickListener {
     String path, fecha, radiobtn, mes, dia;
     private int diaint, mesint, ano;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
         add_el = (Button) findViewById(R.id.add_element);
@@ -141,8 +148,13 @@ public class New extends AppCompatActivity implements View.OnClickListener {
                 }
             }
         });
+
+
+
         alertOpciones.show();
     }
+
+
 
     private void cargarDialogoRecomendacion() {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(New.this);
@@ -309,6 +321,10 @@ public class New extends AppCompatActivity implements View.OnClickListener {
                         }
                     }
                 });
+
+
+
+
                 alertOpciones.show();
                 add_el.setEnabled(true);
                 */
@@ -329,4 +345,15 @@ public class New extends AppCompatActivity implements View.OnClickListener {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

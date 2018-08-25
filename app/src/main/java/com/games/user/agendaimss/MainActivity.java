@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         final List<Contact> values = data.getAll();
 
 
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
 
     }
 
