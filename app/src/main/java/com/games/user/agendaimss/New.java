@@ -167,7 +167,7 @@ public class New extends Activity implements View.OnClickListener {
             isCreada = fileImagen.mkdirs();
         }
         if (isCreada == true) {
-            nombreImagen = 0 + fecha + ".jpg";
+            nombreImagen = 0 + fecha + motivo + horas + ".jpg";
         }
 
         path = Environment.getExternalStorageDirectory() +

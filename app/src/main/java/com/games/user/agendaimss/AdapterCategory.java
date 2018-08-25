@@ -59,7 +59,7 @@ public class AdapterCategory extends BaseAdapter {
         TextView description = (TextView) v.findViewById(R.id.item_TextView);
         description.setText(dir.getDescription());
         ImageView imagen = (ImageView) v.findViewById(R.id.item_ImageView);
-        imagen.setImageDrawable(dir.getImage());
+        imagen.setImageBitmap(dir.getImage());
         return v;
     }
 }

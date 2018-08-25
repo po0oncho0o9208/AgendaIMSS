@@ -1,18 +1,19 @@
 package com.games.user.agendaimss;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
 public class Category {
     private String title;
     private String categoryId;
     private String description;
-    private Drawable imagen;
+    private Bitmap imagen;
 
     public Category() {
         super();
     }
 
-    public Category(String categoryId, String title, String description, Drawable imagen) {
+    public Category(String categoryId, String title, String description, Bitmap imagen) {
         super();
         this.title = title;
         this.description = description;
@@ -36,11 +37,11 @@ public class Category {
         this.description = description;
     }
 
-    public Drawable getImage() {
+    public Bitmap getImage() {
         return imagen;
     }
 
-    public void setImagen(Drawable imagen) {
+    public void setImagen(Bitmap imagen) {
         this.imagen = imagen;
     }
 

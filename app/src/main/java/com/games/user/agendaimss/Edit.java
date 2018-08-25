@@ -1,6 +1,7 @@
 package com.games.user.agendaimss;
 
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,9 +36,10 @@ public class Edit extends AppCompatActivity {
     RadioButton entrada, salida, intermedio;
     TextView fecha;
     ImageView imagen;
-    String path, radiobtn, name, Fecha;
+    String paths, radiobtn, name, Fecha;
     long id;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,7 @@ public class Edit extends AppCompatActivity {
         fecha = findViewById(R.id.txvEfecha);
         horas = findViewById(R.id.address);
         motivo = findViewById(R.id.motivo);
-        imagen = findViewById(R.id.imagemId);
+        imagen = findViewById(R.id.imagenId);
         entrada = findViewById(R.id.entrada);
         salida = findViewById(R.id.salida);
         intermedio = findViewById(R.id.intermedio);
@@ -57,7 +59,7 @@ public class Edit extends AppCompatActivity {
         Fecha = i.getStringExtra("name");
 
         //name.setText(Fecha);
-        fecha.setText(Fecha.charAt(0) + "" + Fecha.charAt(1) + "/" + "" + Fecha.charAt(2) + "" + Fecha.charAt(3) + "/" +
+        fecha.setText(Fecha.charAt(0) + "" + Fecha.charAt(1) + "/" + Fecha.charAt(2) + "" + Fecha.charAt(3) + "/" +
                 Fecha.charAt(4) + "" + Fecha.charAt(5) + Fecha.charAt(6) + Fecha.charAt(7));
 
         switch (i.getStringExtra("lastname")) {
@@ -73,12 +75,14 @@ public class Edit extends AppCompatActivity {
         }
         horas.setText(i.getStringExtra("address"));
         motivo.setText(i.getStringExtra("email"));
+
+
         String paths = Environment.getExternalStorageDirectory() +
-                File.separator + RUTA_IMAGEN + File.separator + 0 + Fecha + ".jpg";
+                File.separator + RUTA_IMAGEN + File.separator + 0 + Fecha + i.getStringExtra("email") + i.getStringExtra("adress") + ".jpg";
 
         Bitmap bitmap = BitmapFactory.decodeFile(paths);
-        Drawable d = new BitmapDrawable(getResources(), bitmap);
-        imagen.setBackgroundDrawable(d);
+        imagen.setImageBitmap(bitmap);
+
         upd_el.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,35 +149,5 @@ public class Edit extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-
-            switch (requestCode) {
-                case COD_SELECCIONA:
-                    Uri miPath = data.getData();
-                    imagen.setImageURI(miPath);
-                    break;
-
-                case COD_FOTO:
-                    MediaScannerConnection.scanFile(getApplicationContext(), new String[]{path}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("Ruta de almacenamiento", "Path: " + path);
-                                }
-                            });
-
-                    Bitmap bitmap = BitmapFactory.decodeFile(path);
-                    imagen.setImageBitmap(bitmap);
-
-                    break;
-            }
-
-
-        }
-    }
 }
 
