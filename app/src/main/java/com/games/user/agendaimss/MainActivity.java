@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         n = findViewById(R.id.new_element);
@@ -147,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            Intent intentds = new Intent(MainActivity.this,MenuPrincipal.class);
+            startActivity(intentds);
             finish();
         }
         return super.onOptionsItemSelected(item);
