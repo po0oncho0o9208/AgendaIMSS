@@ -47,11 +47,10 @@
                 android:layout_height="wrap_content"
                 android:text="FECHA"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-
                 android:textColor="#ffffff" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/txvEfecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -92,7 +91,7 @@
 
 
             <EditText
-                android:id="@+id/phone"
+                android:id="@+id/motivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#ffffff"
@@ -141,7 +140,7 @@
 
 
             <ImageView
-                android:id="@+id/imagemId"
+                android:id="@+id/imagenId"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_alignEnd="@+id/textView"

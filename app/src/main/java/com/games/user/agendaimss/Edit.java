@@ -1,11 +1,14 @@
 package com.games.user.agendaimss;
 
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +16,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,32 +34,34 @@ public class Edit extends AppCompatActivity {
     private final String CARPETA_RAIZ = "misImagenesPrueba/";
     private final String RUTA_IMAGEN = CARPETA_RAIZ + "PasesIMSS";
     Button upd_el, del_btn;
-    EditText address, phone, email, lastname;
+    EditText horas, motivo;
     RadioButton entrada, salida, intermedio;
-    TextView name;
+    TextView fecha;
     ImageView imagen;
-    String path, radiobtn;
+    String paths, radiobtn, name, Fecha;
     long id;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        upd_el = (Button) findViewById(R.id.upd_element);
-        del_btn = (Button) findViewById(R.id.del_btn);
-        name = (TextView) findViewById(R.id.name);
-        address = (EditText) findViewById(R.id.address);
-        phone = (EditText) findViewById(R.id.phone);
-        imagen = (ImageView) findViewById(R.id.imagemId);
-        entrada = (RadioButton) findViewById(R.id.entrada);
-        salida = (RadioButton) findViewById(R.id.salida);
-        intermedio = (RadioButton) findViewById(R.id.intermedio);
+        upd_el = findViewById(R.id.upd_element);
+        del_btn = findViewById(R.id.del_btn);
+        fecha = findViewById(R.id.txvEfecha);
+        horas = findViewById(R.id.address);
+        motivo = findViewById(R.id.motivo);
+        imagen = findViewById(R.id.imagenId);
+        entrada = findViewById(R.id.entrada);
+        salida = findViewById(R.id.salida);
+        intermedio = findViewById(R.id.intermedio);
 
         Intent i = getIntent();
         id = i.getLongExtra("id", 0);
-        String Fecha = i.getStringExtra("name");
+        Fecha = i.getStringExtra("name");
+
         //name.setText(Fecha);
-        name.setText(Fecha.charAt(0) + "" + Fecha.charAt(1) + "/" + "" + Fecha.charAt(2) + "" + Fecha.charAt(3) + "/" +
+        fecha.setText(Fecha.charAt(0) + "" + Fecha.charAt(1) + "/" + Fecha.charAt(2) + "" + Fecha.charAt(3) + "/" +
                 Fecha.charAt(4) + "" + Fecha.charAt(5) + Fecha.charAt(6) + Fecha.charAt(7));
 
         switch (i.getStringExtra("lastname")) {
@@ -68,29 +75,20 @@ public class Edit extends AppCompatActivity {
                 intermedio.setChecked(true);
                 break;
         }
-        address.setText(i.getStringExtra("address"));
-        phone.setText(i.getStringExtra("phone"));
+        horas.setText(i.getStringExtra("address"));
+        motivo.setText(i.getStringExtra("email"));
+
 
         String paths = Environment.getExternalStorageDirectory() +
-                File.separator + RUTA_IMAGEN + File.separator + 0 + Fecha + ".jpg";
-        Toast.makeText(this, paths, Toast.LENGTH_LONG).show();
-        try {
+                File.separator + RUTA_IMAGEN + File.separator + 0 + Fecha + i.getStringExtra("lastname") + ".jpg";
 
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(paths));
-            imagen.setImageBitmap(bitmap);
-        } catch (Exception e) {
-            e.getCause();
-            //handle exception
-        }
-
-        Bitmap bitmap = BitmapFactory.decodeFile(path);
-        // imagen.setImageBitmap(bitmap);
-        imagen.setImageURI(Uri.parse(paths));
+        Bitmap bitmap = BitmapFactory.decodeFile(paths);
+        imagen.setImageBitmap(bitmap);
 
         upd_el.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (name.getText().toString().length() > 0 && phone.getText().toString().length() > 0) {
+                if (fecha.getText().toString().length() > 0) {
 
                     if (entrada.isChecked()) {
                         radiobtn = "ENTRADA";
@@ -103,12 +101,13 @@ public class Edit extends AppCompatActivity {
                     }
                     Contact c = new Contact(getBaseContext());
                     c.open();
-                    c.updateContact(id, name.getText().toString(), radiobtn, address.getText().toString(), phone.getText().toString(), "phone");
-                    address.setText("");
-                    phone.setText("");
+                    c.updateContact(id, Fecha, radiobtn, horas.getText().toString(), motivo.getText().toString());
+                    horas.setText("");
                     Toast.makeText(getBaseContext(), "Elemento Actualizado!!", Toast.LENGTH_LONG).show();
+                    //se agrega metodo para pasar a nueva actividad
                     Intent intentds = new Intent(Edit.this, MainActivity.class);
                     startActivity(intentds);
+                    //se cierra actividdad actual
                     finish();
 
                 } else {
@@ -121,6 +120,7 @@ public class Edit extends AppCompatActivity {
         del_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(Edit.this);
 
                 builder.setTitle(" - Confirmar - ");
@@ -135,6 +135,9 @@ public class Edit extends AppCompatActivity {
                         finish();
                         dialog.dismiss();
                         Toast.makeText(getBaseContext(), "Elemento eliminado !!", Toast.LENGTH_LONG).show();
+                        Intent intentds = new Intent(Edit.this, MainActivity.class);
+                        startActivity(intentds);
+                        finish();
 
                     }
 
@@ -153,38 +156,33 @@ public class Edit extends AppCompatActivity {
                 alert.show();
             }
         });
-    }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-
-            switch (requestCode) {
-                case COD_SELECCIONA:
-                    Uri miPath = data.getData();
-                    imagen.setImageURI(miPath);
-                    break;
-
-                case COD_FOTO:
-                    MediaScannerConnection.scanFile(getApplicationContext(), new String[]{path}, null,
-                            new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("Ruta de almacenamiento", "Path: " + path);
-                                }
-                            });
-
-                    Bitmap bitmap = BitmapFactory.decodeFile(path);
-                    imagen.setImageBitmap(bitmap);
-
-                    break;
-            }
-
-
+        //recuso boton a atras
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            startActivity(new Intent(getBaseContext(), MainActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }
+
+
 

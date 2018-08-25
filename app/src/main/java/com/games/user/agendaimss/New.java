@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -18,7 +20,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -35,7 +40,7 @@ import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.app.DatePickerDialog.OnDateSetListener;
 
-public class New extends Activity implements View.OnClickListener {
+public class New extends AppCompatActivity implements View.OnClickListener {
 
     final int COD_SELECCIONA = 10;
     final int COD_FOTO = 0;
@@ -51,14 +56,20 @@ public class New extends Activity implements View.OnClickListener {
     String path, fecha, radiobtn, mes, dia;
     private int diaint, mesint, ano;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new);
         add_el = (Button) findViewById(R.id.add_element);
         add_el.setOnClickListener(this);
         horas = (EditText) findViewById(R.id.horas);
-        motivo = (EditText) findViewById(R.id.email);
+        motivo = (EditText) findViewById(R.id.motivo);
         textfecha = (TextView) findViewById(R.id.textfecha);
         entrada = (RadioButton) findViewById(R.id.entrada);
         entrada.setChecked(true);
@@ -137,8 +148,13 @@ public class New extends Activity implements View.OnClickListener {
                 }
             }
         });
+
+
+
         alertOpciones.show();
     }
+
+
 
     private void cargarDialogoRecomendacion() {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(New.this);
@@ -157,7 +173,6 @@ public class New extends Activity implements View.OnClickListener {
 
 
     private void tomarFotografia() {
-
         File fileImagen = new File(Environment.getExternalStorageDirectory(), RUTA_IMAGEN);
         boolean isCreada = fileImagen.exists();
         String nombreImagen = "";
@@ -165,7 +180,16 @@ public class New extends Activity implements View.OnClickListener {
             isCreada = fileImagen.mkdirs();
         }
         if (isCreada == true) {
-            nombreImagen = 0 + fecha + ".jpg";
+            if (entrada.isChecked()) {
+                radiobtn = "ENTRADA";
+            }
+            if (salida.isChecked()) {
+                radiobtn = "SALIDA";
+            }
+            if (intermedio.isChecked()) {
+                radiobtn = "INTERMEDIO";
+            }
+            nombreImagen = 0 + fecha + radiobtn + ".jpg";
         }
 
         path = Environment.getExternalStorageDirectory() +
@@ -209,7 +233,8 @@ public class New extends Activity implements View.OnClickListener {
                             });
 
                     Bitmap bitmap = BitmapFactory.decodeFile(path);
-                    imagen.setImageBitmap(bitmap);
+                    Drawable d = new BitmapDrawable(getResources(), bitmap);
+                    imagen.setBackgroundDrawable(d);
 
                     break;
             }
@@ -228,7 +253,7 @@ public class New extends Activity implements View.OnClickListener {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         mes = "" + (month + 1);
-                        Toast.makeText(New.this, "" + mes.length(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(New.this, "" + mes.length(), Toast.LENGTH_LONG).show();
                         if (mes.length() == 1) {
                             mes = 0 + mes;
                         }
@@ -259,12 +284,11 @@ public class New extends Activity implements View.OnClickListener {
                         }
                         Contact c = new Contact(getBaseContext());
                         c.open();
-                        c.createContact(fecha, radiobtn, horas.getText().toString(), motivo.getText().toString(), "phone");
-                        horas.setText("");
-                        motivo.setText("");
+                        c.createContact(fecha, radiobtn, horas.getText().toString(), motivo.getText().toString());
+
                         Toast.makeText(getBaseContext(), "Elemento Agregado!!", Toast.LENGTH_LONG).show();
-                        Intent intent1 = new Intent(New.this, MainActivity.class);
-                        startActivity(intent1);
+                        Intent intentds = new Intent(New.this, MainActivity.class);
+                        startActivity(intentds);
                         finish();
                     } else {
                         Toast.makeText(getBaseContext(), " Agrega la imagen", Toast.LENGTH_LONG).show();
@@ -297,6 +321,10 @@ public class New extends Activity implements View.OnClickListener {
                         }
                     }
                 });
+
+
+
+
                 alertOpciones.show();
                 add_el.setEnabled(true);
                 */
@@ -306,4 +334,26 @@ public class New extends Activity implements View.OnClickListener {
         }
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            startActivity(new Intent(getBaseContext(), MainActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

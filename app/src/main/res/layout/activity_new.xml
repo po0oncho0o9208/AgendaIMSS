@@ -94,7 +94,7 @@
                 android:textColor="#ffffff" />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/motivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#ffffff"
@@ -188,9 +188,12 @@
 
             <Button
                 android:id="@+id/add_element"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Agregar" />
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/buttonadd"
+                android:textColor="#ffff" />
         </LinearLayout>
     </ScrollView>
 
