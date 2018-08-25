@@ -103,7 +103,11 @@ public class Edit extends AppCompatActivity {
                     c.updateContact(id, Fecha, radiobtn, horas.getText().toString(), motivo.getText().toString());
                     horas.setText("");
                     Toast.makeText(getBaseContext(), "Elemento Actualizado!!", Toast.LENGTH_LONG).show();
-                    onBackPressed();
+                    //se agrega metodo para pasar a nueva actividad
+                    Intent intentds = new Intent(Edit.this, MainActivity.class);
+                    startActivity(intentds);
+                    //se cierra actividdad actual
+                    finish();
 
                 } else {
                     Toast.makeText(getBaseContext(), "Error!!", Toast.LENGTH_LONG).show();

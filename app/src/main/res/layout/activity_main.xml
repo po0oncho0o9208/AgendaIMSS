@@ -25,7 +25,7 @@
         android:id="@id/android:list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:listSelector="#d3a50e"
+        android:listSelector="#0f4b07"
         android:theme="@style/listViewStyle" />
 
 
