@@ -98,9 +98,7 @@ public class Edit extends AppCompatActivity {
                     c.updateContact(id, Fecha, radiobtn, horas.getText().toString(), motivo.getText().toString());
                     horas.setText("");
                     Toast.makeText(getBaseContext(), "Elemento Actualizado!!", Toast.LENGTH_LONG).show();
-                    Intent intentds = new Intent(Edit.this, MainActivity.class);
-                    startActivity(intentds);
-                    finish();
+                   onBackPressed();
 
                 } else {
                     Toast.makeText(getBaseContext(), "Error!!", Toast.LENGTH_LONG).show();

@@ -266,9 +266,8 @@ public class New extends Activity implements View.OnClickListener {
                         horas.setText("");
                         motivo.setText("");
                         Toast.makeText(getBaseContext(), "Elemento Agregado!!", Toast.LENGTH_LONG).show();
-                        Intent intent1 = new Intent(New.this, MainActivity.class);
-                        startActivity(intent1);
-                        finish();
+                        onBackPressed();
+
                     } else {
                         Toast.makeText(getBaseContext(), " Agrega la imagen", Toast.LENGTH_LONG).show();
                     }
