@@ -12,8 +12,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -26,7 +28,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends AppCompatActivity {
 
     Button all, n;
     Contact data;
@@ -35,16 +37,20 @@ public class MainActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-        n = (Button) findViewById(R.id.new_element);
+        n = findViewById(R.id.new_element);
         data = new Contact(this);
         data.open();
 
         n.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(MainActivity.this, New.class);
                 startActivity(i);
             }
@@ -67,7 +73,7 @@ public class MainActivity extends ListActivity {
                     File.separator + RUTA_IMAGEN + File.separator + 0 + values.get(i).fecha + values.get(i).radibuttonnid + ".jpg";
 
             Bitmap bitmap = BitmapFactory.decodeFile(paths);
-            category.add(new Category("olo" + values.get(i).id, "Servicio 1", values.get(i).fecha + '\n'  + values.get(i).radibuttonnid, bitmap));
+            category.add(new Category("olo" + values.get(i).id, "Servicio 1", values.get(i).fecha + '\n' + values.get(i).radibuttonnid, bitmap));
         }
         ListView listView = findViewById(android.R.id.list);
         AdapterCategory adapter = new AdapterCategory(this, category);
@@ -107,7 +113,7 @@ public class MainActivity extends ListActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK  && event.getRepeatCount() == 0) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             startActivity(new Intent(getBaseContext(), MenuPrincipal.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
             finish();
@@ -133,5 +139,14 @@ public class MainActivity extends ListActivity {
                 bm, 0, 0, width, height, matrix, false);
         bm.recycle();
         return resizedBitmap;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

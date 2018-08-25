@@ -1,12 +1,11 @@
 package com.games.user.agendaimss;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
 
 public class MenuPrincipal extends AppCompatActivity {
 
@@ -37,7 +36,7 @@ public class MenuPrincipal extends AppCompatActivity {
                             finish();
                             break;
                         case R.id.sustis:
-                            Intent intentae = new Intent(MenuPrincipal.this,Foto.class);
+                            Intent intentae = new Intent(MenuPrincipal.this,Sustis.class);
                             startActivity(intentae);
                             break;
                         case R.id.licencia:
