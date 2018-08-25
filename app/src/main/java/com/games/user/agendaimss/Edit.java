@@ -133,6 +133,9 @@ public class Edit extends AppCompatActivity {
                         finish();
                         dialog.dismiss();
                         Toast.makeText(getBaseContext(), "Elemento eliminado !!", Toast.LENGTH_LONG).show();
+                        Intent intentds = new Intent(Edit.this, MainActivity.class);
+                        startActivity(intentds);
+                        finish();
 
                     }
 
