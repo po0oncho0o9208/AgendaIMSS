@@ -59,18 +59,15 @@ public class MainActivity extends ListActivity {
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int ancho = metrics.widthPixels / (100) * 20;
         int anchobtn = metrics.widthPixels / (100) * 28;
+
         ArrayList<Category> category = new ArrayList<Category>();
         for (int i = 0; i < values.size(); i++) {
 
             String paths = Environment.getExternalStorageDirectory() +
-                    File.separator + RUTA_IMAGEN + File.separator + 0 + values.get(i).fecha + values.get(i).motivo + values.get(i).horas + ".jpg";
+                    File.separator + RUTA_IMAGEN + File.separator + 0 + values.get(i).fecha + values.get(i).motivo + ".jpg";
 
             Bitmap bitmap = BitmapFactory.decodeFile(paths);
-
-            Drawable d = new BitmapDrawable(getResources(), bitmap);
-
-
-            category.add(new Category("olo" + values.get(i).id, "Servicio 1", values.get(i).fecha + "-" + values.get(i).motivo, getResizedBitmap(bitmap, ancho, anchobtn)));
+            category.add(new Category("olo" + values.get(i).id, "Servicio 1", values.get(i).fecha + "-" + values.get(i).motivo, bitmap));
         }
         ListView listView = findViewById(android.R.id.list);
         AdapterCategory adapter = new AdapterCategory(this, category);
@@ -120,6 +117,7 @@ public class MainActivity extends ListActivity {
 
 
     public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+
         int width = bm.getWidth();
         int height = bm.getHeight();
         float scaleWidth = ((float) newWidth) / width;

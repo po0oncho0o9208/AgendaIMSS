@@ -159,7 +159,7 @@ public class New extends Activity implements View.OnClickListener {
 
 
     private void tomarFotografia() {
-
+        Toast.makeText(this, horas.getText(), Toast.LENGTH_LONG).show();
         File fileImagen = new File(Environment.getExternalStorageDirectory(), RUTA_IMAGEN);
         boolean isCreada = fileImagen.exists();
         String nombreImagen = "";
@@ -167,7 +167,7 @@ public class New extends Activity implements View.OnClickListener {
             isCreada = fileImagen.mkdirs();
         }
         if (isCreada == true) {
-            nombreImagen = 0 + fecha + motivo + horas + ".jpg";
+            nombreImagen = 0 + fecha + horas.getText() + ".jpg";
         }
 
         path = Environment.getExternalStorageDirectory() +
@@ -263,8 +263,7 @@ public class New extends Activity implements View.OnClickListener {
                         Contact c = new Contact(getBaseContext());
                         c.open();
                         c.createContact(fecha, radiobtn, horas.getText().toString(), motivo.getText().toString());
-                        horas.setText("");
-                        motivo.setText("");
+
                         Toast.makeText(getBaseContext(), "Elemento Agregado!!", Toast.LENGTH_LONG).show();
                         onBackPressed();
 
