@@ -67,7 +67,7 @@ public class MainActivity extends ListActivity {
                     File.separator + RUTA_IMAGEN + File.separator + 0 + values.get(i).fecha + values.get(i).radibuttonnid + ".jpg";
 
             Bitmap bitmap = BitmapFactory.decodeFile(paths);
-            category.add(new Category("olo" + values.get(i).id, "Servicio 1", values.get(i).fecha + '\n'  + values.get(i).radibuttonnid, bitmap));
+            category.add(new Category("olo" + values.get(i).id, "Servicio 1", values.get(i).fecha + '\n' + values.get(i).radibuttonnid, bitmap));
         }
         ListView listView = findViewById(android.R.id.list);
         AdapterCategory adapter = new AdapterCategory(this, category);
@@ -87,7 +87,6 @@ public class MainActivity extends ListActivity {
                 i.putExtra("address", values.get(position).horas);
                 i.putExtra("email", values.get(position).motivo);
                 startActivity(i);
-                fileList();
 
             }
 
@@ -107,7 +106,7 @@ public class MainActivity extends ListActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK  && event.getRepeatCount() == 0) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             startActivity(new Intent(getBaseContext(), MenuPrincipal.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
             finish();
