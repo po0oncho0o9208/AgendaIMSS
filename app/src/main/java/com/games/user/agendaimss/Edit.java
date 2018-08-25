@@ -16,6 +16,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -102,7 +103,7 @@ public class Edit extends AppCompatActivity {
                     c.updateContact(id, Fecha, radiobtn, horas.getText().toString(), motivo.getText().toString());
                     horas.setText("");
                     Toast.makeText(getBaseContext(), "Elemento Actualizado!!", Toast.LENGTH_LONG).show();
-                   onBackPressed();
+                    onBackPressed();
 
                 } else {
                     Toast.makeText(getBaseContext(), "Error!!", Toast.LENGTH_LONG).show();
@@ -146,8 +147,23 @@ public class Edit extends AppCompatActivity {
                 alert.show();
             }
         });
+
+        //recuso boton a atras
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
+
+
 

@@ -273,8 +273,9 @@ public class New extends Activity implements View.OnClickListener {
                         c.createContact(fecha, radiobtn, horas.getText().toString(), motivo.getText().toString());
 
                         Toast.makeText(getBaseContext(), "Elemento Agregado!!", Toast.LENGTH_LONG).show();
-                        onBackPressed();
-
+                        Intent intentds = new Intent(New.this, MainActivity.class);
+                        startActivity(intentds);
+                        finish();
                     } else {
                         Toast.makeText(getBaseContext(), " Agrega la imagen", Toast.LENGTH_LONG).show();
                     }
