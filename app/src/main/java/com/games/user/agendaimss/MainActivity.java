@@ -57,7 +57,7 @@ public class MainActivity extends ListActivity {
         //ListView listView = getListView();
         //Drawable res = getResources().getDrawable(R.drawable.btnagregar);
         DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int ancho = metrics.widthPixels / (100) * 20;
+        int ancho = metrics.widthPixels / (100) * 28;
         int anchobtn = metrics.widthPixels / (100) * 28;
 
         ArrayList<Category> category = new ArrayList<Category>();
